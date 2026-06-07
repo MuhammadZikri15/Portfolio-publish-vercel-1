@@ -1,21 +1,24 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub } from "react-icons/fa";
+
 import k1 from "../assets/k1.png";
 import k2 from "../assets/k2.png";
 import k3 from "../assets/k3.png";
 import k4 from "../assets/k4.png";
-import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
 
 function Projects() {
   const [selectedWork, setSelectedWork] = useState(null);
 
   const prototypeUrlFashion =
     "https://www.figma.com/proto/tfybYYg201x8QCElcme2HK/WEB-Fashion?node-id=1022-64&t=IXhPNGV3W0r8XAV7-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1022%3A64&show-proto-sidebar=1";
+
   const figmaEmbedUrlFashion =
     "https://embed.figma.com/proto/tfybYYg201x8QCElcme2HK/WEB-Fashion?node-id=1022-64&t=IXhPNGV3W0r8XAV7-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1022%3A64&show-proto-sidebar=1&embed-host=share";
 
   const prototypeUrlRPL =
     "https://www.figma.com/proto/9m74K9sWkt9w7WED05vNGP/Tugas-RPL?node-id=2201-356&t=rJmekAc5UwBHTmwL-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2201%3A356&show-proto-sidebar=1";
+
   const figmaEmbedUrlRPL =
     "https://embed.figma.com/proto/9m74K9sWkt9w7WED05vNGP/Tugas-RPL?node-id=2201-356&t=rJmekAc5UwBHTmwL-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2201%3A356&show-proto-sidebar=1&embed-host=share";
 
@@ -24,28 +27,28 @@ function Projects() {
       title: "WEB Fashion",
       tags: ["Figma"],
       desc: "A modern fashion website prototype designed with clean layout, product showcase, and responsive user flow.",
-      github: "https://github.com/username/ecommerce-platform",
+      github: "https://github.com/MuhammadZikri15/muhammad-zikri",
       demo: prototypeUrlFashion,
       embed: figmaEmbedUrlFashion,
-      previewTitle: "WEB Fashion",
+      type: "figma",
     },
     {
       title: "Tugas RPL",
       tags: ["Figma"],
       desc: "An interactive system prototype created in Figma to present application flow, interface structure, and user interaction.",
-      github: "https://github.com/username/tugas-rpl",
+      github: "https://github.com/MuhammadZikri15/muhammad-zikri",
       demo: prototypeUrlRPL,
       embed: figmaEmbedUrlRPL,
-      previewTitle: "Tugas RPL",
+      type: "figma",
     },
     {
       title: "Portfolio Website",
-      tags: ["VITE", "CSS"],
+      tags: ["Vite", "CSS"],
       desc: "A personal portfolio website with responsive layout and modern visual style.",
-      github: "https://github.com/username/portfolio-website",
-      demo: "https://portfolio-website-demo.com",
+      github: "https://github.com/MuhammadZikri15/muhammad-zikri",
+      demo: "https://muhammad-zikri.vercel.app",
       embed: "",
-      previewTitle: "Portfolio Website",
+      type: "portfolio",
     },
   ];
 
@@ -58,6 +61,7 @@ function Projects() {
 
   const FigmaIcon = () => (
     <svg
+      className="mz-figma-icon"
       width="24"
       height="24"
       viewBox="0 0 38 57"
@@ -89,63 +93,435 @@ function Projects() {
   );
 
   return (
-    <section id="projects" className="projects">
+    <section id="projects" className="projects mz-projects-section">
       <style>
         {`
-          .content-feed-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 28px;
-  align-items: stretch;
-}
+          .mz-projects-section {
+            width: 100%;
+            overflow: hidden;
+          }
 
-.content-feed-card {
-  padding: 0 !important;
-  overflow: hidden;
-  cursor: pointer;
-  border-radius: 15px;
-  aspect-ratio: 4 / 5;
-  background: #111c2d;
-  transition: all 0.3s ease;
-}
+          .mz-projects-section > h2 {
+            display: inline-block;
+            color: #ffffff;
+            border-bottom: 4px solid #10b981;
+            padding-bottom: 10px;
+            margin: 0 0 36px 0;
+            font-size: 28px;
+            line-height: 1.2;
+          }
 
-.content-feed-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-}
+          .mz-project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+            align-items: stretch;
+          }
 
-.content-feed-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform 0.4s ease;
-}
+          .mz-project-card {
+            width: 100%;
+            min-width: 0;
+            overflow: hidden;
+            background: #111c2d;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+          }
 
-.content-feed-card:hover .content-feed-img {
-  transform: scale(1.05);
-}
+          .mz-project-card:hover {
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.12);
+          }
 
-@media (max-width: 1200px) {
-  .content-feed-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+          .mz-project-preview {
+            position: relative;
+            width: 100%;
+            height: 245px;
+            overflow: hidden;
+            background:
+              linear-gradient(180deg, rgba(16, 185, 129, 0.16), rgba(4, 14, 31, 0.88)),
+              linear-gradient(135deg, #10243a, #0b3028);
+          }
 
-@media (max-width: 768px) {
-  .content-feed-grid {
-    grid-template-columns: 1fr;
-  }
-}
+          .mz-project-preview::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+              linear-gradient(180deg, rgba(4, 14, 31, 0.04), rgba(4, 14, 31, 0.68)),
+              linear-gradient(90deg, rgba(16, 185, 129, 0.08), transparent);
+            pointer-events: none;
+            z-index: 2;
+          }
 
-          @media (max-width: 640px) {
-            .content-feed-grid {
-              grid-template-columns: 1fr;
+          .mz-project-iframe {
+            position: absolute;
+            top: -18px;
+            left: 0;
+            width: 100%;
+            height: 138%;
+            border: none;
+            opacity: 0.45;
+            transform: scale(1.08);
+            transform-origin: center top;
+            pointer-events: none;
+            filter: saturate(0.85) contrast(1.02);
+            z-index: 1;
+          }
+
+          .mz-project-preview-placeholder {
+            width: 100%;
+            height: 100%;
+            background:
+              radial-gradient(circle at 78% 18%, rgba(16, 185, 129, 0.26), transparent 34%),
+              radial-gradient(circle at 8% 0%, rgba(56, 189, 248, 0.16), transparent 28%),
+              linear-gradient(135deg, #10243a, #103b34);
+          }
+
+          .mz-project-body {
+            padding: 26px;
+          }
+
+          .mz-project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+          }
+
+          .mz-project-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.12);
+            padding: 7px 10px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1;
+          }
+
+          .mz-figma-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+          }
+
+          .mz-project-body h3 {
+            margin-bottom: 12px;
+            font-size: 22px;
+            color: #ffffff;
+            line-height: 1.35;
+          }
+
+          .mz-project-body p {
+            color: #a7b0c0;
+            line-height: 1.7;
+            font-size: 15px;
+            margin-bottom: 22px;
+          }
+
+          .mz-project-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+          }
+
+          .mz-project-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-decoration: none;
+          }
+
+          .mz-github-btn {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+          }
+
+          .mz-github-btn svg {
+            width: 18px;
+            height: 18px;
+          }
+
+          .mz-github-btn:hover {
+            background: #ffffff;
+            color: #040e1f;
+            border-color: #ffffff;
+            transform: translateY(-3px);
+          }
+
+          .mz-demo-btn {
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+          }
+
+          .mz-demo-btn:hover {
+            background: #10b981;
+            color: #00120c;
+            transform: translateY(-3px);
+          }
+
+          .mz-content-work-section {
+            margin-top: 100px;
+            padding-top: 20px;
+          }
+
+          .mz-content-feed-title {
+            text-align: left;
+            margin-bottom: 46px;
+          }
+
+          .mz-content-feed-title h2 {
+            display: inline-block;
+            color: #ffffff;
+            border-bottom: 4px solid #10b981;
+            padding-bottom: 10px;
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.2;
+          }
+
+          .mz-content-feed-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 28px;
+          }
+
+          .mz-content-feed-card {
+            width: 100%;
+            padding: 0;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 18px;
+            aspect-ratio: 4 / 5;
+            background: #111c2d;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+          }
+
+          .mz-content-feed-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+          }
+
+          .mz-content-feed-card:hover .mz-content-feed-img {
+            transform: scale(1.05);
+          }
+
+          .mz-content-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+          }
+
+          .mz-content-modal-box {
+            position: relative;
+            width: min(1080px, 100%);
+            max-height: 92vh;
+            background: #0b0f14;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+          }
+
+          .mz-content-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            z-index: 2;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, 0.75);
+            color: #ffffff;
+            font-size: 24px;
+            line-height: 38px;
+            cursor: pointer;
+          }
+
+          .mz-content-modal-scroll {
+            max-height: 92vh;
+            overflow: auto;
+            padding: 20px;
+            background: #05080c;
+          }
+
+          .mz-content-modal-scroll img {
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+          }
+
+          @media (max-width: 1200px) {
+            .mz-project-grid {
+              grid-template-columns: repeat(3, minmax(0, 1fr));
+              gap: 24px;
             }
 
-            .content-feed-card {
-              height: 360px;
+            .mz-project-preview {
+              height: 230px;
+            }
+
+            .mz-content-feed-grid {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+          }
+
+          @media (max-width: 992px) {
+            .mz-project-grid {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .mz-project-preview {
+              height: 230px;
+            }
+
+            .mz-content-feed-title {
+              text-align: center;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .mz-project-grid {
+              grid-template-columns: 1fr;
+              gap: 24px;
+            }
+
+            .mz-project-preview {
+              height: 220px;
+            }
+
+            .mz-project-iframe {
+              height: 130%;
+              top: -10px;
+              transform: scale(1.04);
+            }
+
+            .mz-project-body {
+              padding: 22px;
+            }
+
+            .mz-project-body h3 {
+              font-size: 19px;
+            }
+
+            .mz-project-body p {
+              font-size: 14.5px;
+              line-height: 1.65;
+            }
+
+            .mz-project-buttons {
+              flex-direction: column;
+              gap: 10px;
+            }
+
+            .mz-project-btn {
+              width: 100%;
+            }
+
+            .mz-content-work-section {
+              margin-top: 70px;
+            }
+
+            .mz-content-feed-grid {
+              grid-template-columns: 1fr;
+              gap: 22px;
+            }
+
+            .mz-content-feed-card {
+              max-width: 420px;
+              margin: 0 auto;
+            }
+
+            .mz-content-modal {
+              padding: 14px;
+            }
+
+            .mz-content-modal-box {
+              border-radius: 16px;
+            }
+
+            .mz-content-modal-scroll {
+              padding: 14px;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .mz-project-preview {
+              height: 200px;
+            }
+
+            .mz-project-iframe {
+              height: 126%;
+              top: -6px;
+              transform: scale(1.02);
+            }
+
+            .mz-project-body {
+              padding: 19px;
+            }
+
+            .mz-project-body h3 {
+              font-size: 18px;
+            }
+
+            .mz-project-tag {
+              font-size: 11px;
+              padding: 6px 9px;
+            }
+
+            .mz-figma-icon {
+              width: 18px;
+              height: 18px;
+            }
+
+            .mz-content-feed-card {
+              max-width: 100%;
+            }
+
+            .mz-content-modal-close {
+              width: 34px;
+              height: 34px;
+              font-size: 22px;
+              line-height: 34px;
+            }
+          }
+
+          @media (max-width: 360px) {
+            .mz-project-preview {
+              height: 180px;
+            }
+
+            .mz-project-body {
+              padding: 16px;
+            }
+
+            .mz-project-body h3 {
+              font-size: 17px;
+            }
+
+            .mz-project-body p {
+              font-size: 13.8px;
             }
           }
         `}
@@ -153,131 +529,38 @@ function Projects() {
 
       <h2>Project</h2>
 
-      <div className="project-grid">
+      <div className="mz-project-grid">
         {projects.map((project, index) => (
-          <motion.div
-            className="project-card"
-            key={index}
-            initial={{
-              opacity: 0,
-              scale: 0.85,
-              rotateY: -15,
-            }}
-            whileInView={{
-              opacity: 1,
-              scale: 1,
-              rotateY: 0,
-            }}
-            viewport={{
-              once: false,
-              amount: 0.15,
-            }}
+          <motion.article
+            className="mz-project-card"
+            key={project.title}
+            initial={{ opacity: 0, y: 45, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.15 }}
             transition={{
-              duration: 0.7,
-              delay: index * 0.15,
+              duration: 0.65,
+              delay: index * 0.12,
               ease: "easeOut",
             }}
-            whileHover={{
-              y: -12,
-              scale: 1.03,
-            }}
+            whileHover={{ y: -8, scale: 1.02 }}
           >
-            <div
-              className="project-image"
-              style={{
-                position: "relative",
-                overflow: "hidden",
-                minHeight: "260px",
-              }}
-            >
+            <div className="mz-project-preview">
               {project.embed ? (
                 <iframe
                   src={project.embed}
-                  title={`${project.previewTitle} Prototype Preview`}
-                  style={{
-                    width: "100%",
-                    height: "125%",
-                    border: "none",
-                    opacity: "0.38",
-                    transform: "translateY(28px) scale(1.12)",
-                    transformOrigin: "center top",
-                    pointerEvents: "none",
-                  }}
+                  title={`${project.title} Prototype Preview`}
+                  className="mz-project-iframe"
                   allowFullScreen
                 />
               ) : (
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    minHeight: "260px",
-                    background:
-                      "linear-gradient(135deg, rgba(16,185,129,0.2), rgba(0,0,0,0.7))",
-                  }}
-                />
+                <div className="mz-project-preview-placeholder"></div>
               )}
-
-              <div
-                style={{
-                  position: "absolute",
-                  inset: "0",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  textAlign: "center",
-                  background:
-                    "linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.62))",
-                  color: "#ffffff",
-                  padding: "20px",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "12px",
-                    letterSpacing: "2px",
-                    textTransform: "uppercase",
-                    opacity: "0.9",
-                    marginBottom: "8px",
-                  }}
-                >
-                  Prototype Preview
-                </span>
-                <strong
-                  style={{
-                    fontSize: "22px",
-                    lineHeight: "1.3",
-                    fontWeight: "700",
-                  }}
-                >
-                  {project.previewTitle}
-                </strong>
-                <p
-                  style={{
-                    fontSize: "14px",
-                    marginTop: "8px",
-                    opacity: "0.9",
-                  }}
-                >
-                  Click Demo to open the interactive prototype
-                </p>
-              </div>
             </div>
 
-            <div className="project-body">
-              <div className="tags">
+            <div className="mz-project-body">
+              <div className="mz-project-tags">
                 {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      fontSize: "15px",
-                      fontWeight: "700",
-                      lineHeight: "1",
-                    }}
-                  >
+                  <span key={tag} className="mz-project-tag">
                     {tag === "Figma" && <FigmaIcon />}
                     {tag}
                   </span>
@@ -287,153 +570,97 @@ function Projects() {
               <h3>{project.title}</h3>
               <p>{project.desc}</p>
 
-              <div className="project-buttons">
+              <div className="mz-project-buttons">
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="project-btn github-btn"
+                  className="mz-project-btn mz-github-btn"
                 >
-                  <FaGithub size={22} />
+                  <FaGithub />
                   GitHub
                 </a>
+
                 <a
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="project-btn demo-btn"
+                  className="mz-project-btn mz-demo-btn"
                 >
                   Demo
                 </a>
               </div>
             </div>
-          </motion.div>
+          </motion.article>
         ))}
       </div>
 
-      <div
-        className="content-work-section"
-        style={{ marginTop: "100px", paddingTop: "20px" }}
-      ></div>
-      <div
-        className="section-title"
-        style={{ textAlign: "left", marginBottom: "46px" }}
-      >
-        <h2>Content Feed Instagram</h2>
-      </div>
+      <div className="mz-content-work-section">
+        <div className="mz-content-feed-title">
+          <h2>Content Feed Instagram</h2>
+        </div>
 
-      <div className="content-feed-grid">
-        {contentWorks.map((work, index) => (
-          <motion.div
-            className="project-card content-feed-card"
-            key={index}
-            onClick={() => setSelectedWork(work)}
-            initial={{
-              opacity: 0,
-              y: 60,
-              scale: 0.9,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            viewport={{
-              once: false,
-              amount: 0.15,
-            }}
-            transition={{
-              duration: 0.6,
-              delay: index * 0.12,
-            }}
-            whileHover={{
-              y: -10,
-              scale: 1.05,
-            }}
-          >
-            <img
-              src={work.image}
-              alt={work.title}
-              className="content-feed-img"
-            />
-          </motion.div>
-        ))}
-      </div>
-
-      {selectedWork && (
-        <div
-          onClick={() => setSelectedWork(null)}
-          style={{
-            position: "fixed",
-            inset: "0",
-            zIndex: "9999",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "24px",
-            background: "rgba(0, 0, 0, 0.85)",
-            backdropFilter: "blur(8px)",
-          }}
-        >
-          <div
-            onClick={(event) => event.stopPropagation()}
-            style={{
-              position: "relative",
-              width: "100%",
-              maxWidth: "1080px",
-              maxHeight: "92vh",
-              background: "#0b0f14",
-              borderRadius: "20px",
-              overflow: "hidden",
-              border: "1px solid rgba(255, 255, 255, 0.12)",
-              boxShadow: "0 25px 80px rgba(0, 0, 0, 0.55)",
-            }}
-          >
-            <button
+        <div className="mz-content-feed-grid">
+          {contentWorks.map((work, index) => (
+            <motion.button
               type="button"
-              onClick={() => setSelectedWork(null)}
-              aria-label="Close image preview"
-              style={{
-                position: "absolute",
-                top: "14px",
-                right: "14px",
-                zIndex: "2",
-                width: "38px",
-                height: "38px",
-                borderRadius: "50%",
-                border: "none",
-                background: "rgba(0, 0, 0, 0.75)",
-                color: "#ffffff",
-                fontSize: "24px",
-                lineHeight: "38px",
-                cursor: "pointer",
+              className="mz-content-feed-card"
+              key={work.title}
+              onClick={() => setSelectedWork(work)}
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.12,
+                ease: "easeOut",
               }}
-            >
-              ×
-            </button>
-
-            <div
-              style={{
-                maxHeight: "92vh",
-                overflow: "auto",
-                padding: "20px",
-                background: "#05080c",
-              }}
+              whileHover={{ y: -10, scale: 1.03 }}
             >
               <img
-                src={selectedWork.image}
-                alt={selectedWork.title}
-                style={{
-                  display: "block",
-                  width: "100%",
-                  height: "auto",
-                  borderRadius: "14px",
-                }}
+                src={work.image}
+                alt={work.title}
+                className="mz-content-feed-img"
+                loading="lazy"
               />
-            </div>
-          </div>
+            </motion.button>
+          ))}
         </div>
-      )}
+      </div>
+
+      <AnimatePresence>
+        {selectedWork && (
+          <motion.div
+            className="mz-content-modal"
+            onClick={() => setSelectedWork(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="mz-content-modal-box"
+              onClick={(event) => event.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.92, y: 40 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 40 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              <button
+                type="button"
+                className="mz-content-modal-close"
+                onClick={() => setSelectedWork(null)}
+                aria-label="Close image preview"
+              >
+                ×
+              </button>
+
+              <div className="mz-content-modal-scroll">
+                <img src={selectedWork.image} alt={selectedWork.title} />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

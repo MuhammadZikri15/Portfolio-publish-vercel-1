@@ -29,15 +29,7 @@ function Hero() {
           PORTFOLIO
         </motion.h4>
 
-        {/* FIX: stack vertikal */}
-        <div
-          className="hero-heading"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-        >
+        <div className="hero-heading">
           <TypeAnimation
             sequence={[500, "Hi, I'm"]}
             wrapper="h1"
@@ -47,46 +39,20 @@ function Hero() {
             className="hero-title-top hi-unique"
           />
 
-          <h2 className="hero-name">
-            <TypeAnimation
-              sequence={[1800, "Muhammad Zikri"]}
-              speed={200}
-              cursor={false}
-              repeat={0}
-            />
-          </h2>
-        </div>
+          <div className="hero-name-wrapper">
+            <h2 className="hero-name">
+              <TypeAnimation
+                sequence={[1800, "Muhammad Zikri"]}
+                speed={200}
+                cursor={false}
+                repeat={0}
+              />
+            </h2>
 
-        <motion.div
-          className="hero-name-wrapper"
-          style={{
-            position: "relative",
-            display: "inline-block",
-            marginTop: "10px",
-            width: "fit-content",
-          }}
-        >
-          <motion.img
-            src={glowingIcon}
-            alt="Glowing decoration"
-            className="hero-glowing-icon"
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            style={{
-              position: "absolute",
-              top: "-100px",
-              right: "-10px",
-              width: "200px",
-              height: "200px",
-              objectFit: "contain",
-              pointerEvents: "none",
-            }}
-          />
-        </motion.div>
+      
+           
+          </div>
+        </div>
 
         <motion.p
           initial={{ y: 40, opacity: 0 }}
