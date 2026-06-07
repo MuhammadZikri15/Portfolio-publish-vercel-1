@@ -233,42 +233,53 @@ function Projects() {
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 11px 18px;
-            border-radius: 12px;
+            min-width: 120px;
+            padding: 12px 20px;
+            border-radius: 16px;
             font-size: 14px;
             font-weight: 700;
+            line-height: 1;
             transition: all 0.3s ease;
             text-decoration: none;
           }
 
-          .mz-github-btn {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-          }
-
-          .mz-github-btn svg {
+          .mz-project-btn svg {
             width: 18px;
             height: 18px;
+            flex-shrink: 0;
+            transition: color 0.3s ease;
+          }
+
+          .mz-github-btn {
+            color: #d7dee9;
+            background: rgba(255, 255, 255, 0.055);
+            border: 2px solid rgba(255, 255, 255, 0.18);
           }
 
           .mz-github-btn:hover {
-            background: #ffffff;
-            color: #040e1f;
-            border-color: #ffffff;
-            transform: translateY(-3px);
-          }
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.16);
+}
+
+.mz-github-btn:hover svg {
+  color: #000000;
+}
 
           .mz-demo-btn {
             color: #10b981;
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.16);
+            border: 2px solid rgba(16, 185, 129, 0.75);
           }
 
           .mz-demo-btn:hover {
             background: #10b981;
-            color: #00120c;
+            color: #06111f;
+            border-color: #10b981;
             transform: translateY(-3px);
+            box-shadow: 0 0 28px rgba(16, 185, 129, 0.24);
           }
 
           .mz-content-work-section {
@@ -437,6 +448,7 @@ function Projects() {
 
             .mz-project-btn {
               width: 100%;
+              padding: 13px 18px;
             }
 
             .mz-content-work-section {
@@ -495,6 +507,11 @@ function Projects() {
               height: 18px;
             }
 
+            .mz-project-btn {
+              border-radius: 15px;
+              font-size: 13.5px;
+            }
+
             .mz-content-feed-card {
               max-width: 100%;
             }
@@ -527,7 +544,7 @@ function Projects() {
         `}
       </style>
 
-      <h2>Project</h2>
+      <h2>Proyek</h2>
 
       <div className="mz-project-grid">
         {projects.map((project, index) => (

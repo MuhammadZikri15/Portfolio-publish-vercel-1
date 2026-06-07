@@ -1,5 +1,4 @@
 import heroImage from "../assets/zikri.png";
-import glowingIcon from "../assets/glowing.png";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 
@@ -12,14 +11,99 @@ function Hero() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      <style>
+        {`
+          .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+          }
+
+          .btn-primary,
+          .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 155px;
+            padding: 20px 28px;
+            border-radius: 15px;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+
+          .btn-primary {
+            background: rgba(16, 185, 129, 0.16);
+            color: #10b981;
+            border: 2px solid rgba(16, 185, 129, 0.75);
+            box-shadow: none;
+          }
+
+          .btn-primary:hover {
+            background: #10b981;
+            color: #06111f;
+            border-color: #10b981;
+            box-shadow: 0 0 28px rgba(16, 185, 129, 0.24);
+          }
+
+          .btn-secondary {
+            background: rgba(16, 185, 129, 0.08);
+            color: #10b981;
+            border: 2px solid rgba(16, 185, 129, 0.55);
+            box-shadow: none;
+          }
+
+          .btn-secondary:hover {
+            background: #10b981;
+            color: #06111f;
+            border-color: #10b981;
+            box-shadow: 0 0 28px rgba(16, 185, 129, 0.24);
+          }
+
+          @media (max-width: 768px) {
+            .hero-buttons {
+              gap: 14px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+              min-width: 145px;
+              padding: 14px 22px;
+              border-radius: 16px;
+              font-size: 14px;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .hero-buttons {
+              width: 100%;
+              flex-direction: column;
+              align-items: stretch;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+              width: 100%;
+              min-width: 100%;
+              padding: 14px 20px;
+              border-radius: 15px;
+            }
+          }
+        `}
+      </style>
+
       <motion.div
         className="hero-content"
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <span className="hero-blur"></span>
-        <span className="hero-blur"></span>
+        <span className="hero-blur blur-one"></span>
+        <span className="hero-blur blur-two"></span>
 
         <motion.h4
           initial={{ y: -30, opacity: 0 }}
@@ -31,7 +115,7 @@ function Hero() {
 
         <div className="hero-heading">
           <TypeAnimation
-            sequence={[500, "Hi, I'm"]}
+            sequence={[500, "Hallo, Saya"]}
             wrapper="h1"
             speed={200}
             cursor={false}
@@ -48,9 +132,6 @@ function Hero() {
                 repeat={0}
               />
             </h2>
-
-      
-           
           </div>
         </div>
 
@@ -59,10 +140,13 @@ function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 3.5, duration: 0.8 }}
         >
-          Mahasiswa semester 6 Universitas Bina Sarana Informatika yang memiliki
-          ketertarikan pada pengembangan web, desain antarmuka, dan teknologi
-          digital. Portfolio ini berisi beberapa karya, skill, dan pengalaman
-          saya dalam membangun project berbasis teknologi.
+          Mahasiswa semester 6 jurusan Sistem Informasi di Universitas Bina
+          Sarana Informatika dengan minat pada pengembangan web, desain
+          antarmuka, dan teknologi digital. Berpengalaman mengerjakan berbagai
+          proyek kampus maupun individu, mulai dari perancangan UI website
+          hingga pengembangan aplikasi. Memiliki ketertarikan dalam
+          menggabungkan keterampilan teknis dan pemecahan masalah kreatif untuk
+          menciptakan solusi digital yang efektif, fungsional, dan menarik.
         </motion.p>
 
         <motion.div
@@ -77,7 +161,7 @@ function Hero() {
             whileHover={{ scale: 1.08, y: -3 }}
             whileTap={{ scale: 0.95 }}
           >
-            View My Work
+            Kunjungi
           </motion.a>
 
           <motion.a
@@ -86,7 +170,7 @@ function Hero() {
             whileHover={{ scale: 1.08, y: -3 }}
             whileTap={{ scale: 0.95 }}
           >
-            Let's Talk
+            Kontak
           </motion.a>
         </motion.div>
       </motion.div>

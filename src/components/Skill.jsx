@@ -393,7 +393,7 @@ function Skill() {
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.8 }}
       >
-        <h2>Skills</h2>
+        <h2>Kemampuan</h2>
       </motion.div>
 
       <div className="mz-skill-grid">

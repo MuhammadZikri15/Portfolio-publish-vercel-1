@@ -67,7 +67,8 @@ ${message}`;
             font-size: clamp(32px, 5vw, 58px);
             line-height: 1.15;
             margin: 0 0 24px;
-            font-weight: 800;
+            font-weight: 600;
+            letter-spacing: -0.03em;
           }
 
           .mz-contact-info p {
@@ -121,10 +122,6 @@ ${message}`;
             height: 24px;
             object-fit: contain;
             display: block;
-          }
-
-          .mz-gmail-icon img {
-            filter: none;
           }
 
           .mz-whatsapp-icon {
@@ -203,22 +200,27 @@ ${message}`;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #10b981;
-            color: #06111f;
-            border: 1px solid rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.16);
+            color: #10b981;
+            border: 2px solid rgba(16, 185, 129, 0.75);
             padding: 16px;
             border-radius: 14px;
             font-size: 15px;
-            font-weight: 800;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
           }
 
           .mz-contact-form button:hover {
-            background: #059669;
-            color: #ffffff;
+            background: #10b981;
+            color: #06111f;
+            border-color: #10b981;
             transform: translateY(-3px);
-            box-shadow: 0 0 28px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 28px rgba(16, 185, 129, 0.24);
+          }
+
+          .mz-contact-form button:active {
+            transform: translateY(-1px);
           }
 
           @media (max-width: 1200px) {
@@ -259,6 +261,7 @@ ${message}`;
 
             .mz-contact-info h2 {
               font-size: 28px;
+              font-weight: 600;
               margin-bottom: 16px;
             }
 
@@ -334,6 +337,7 @@ ${message}`;
 
             .mz-contact-info h2 {
               font-size: 26px;
+              font-weight: 600;
             }
 
             .mz-contact-info p {
@@ -405,11 +409,10 @@ ${message}`;
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2>Contact Me</h2>
+          <h2>Kontak Saya</h2>
 
           <p>
-            Feel free to contact me for collaboration, project discussion,
-            freelance work, or professional opportunities.
+            Hubungi sosial media kami
           </p>
 
           <div className="mz-contact-list">
@@ -474,7 +477,7 @@ ${message}`;
         >
           <input
             type="text"
-            placeholder="Full Name"
+            placeholder="Nama Lengkap"
             value={name}
             onChange={(event) => setName(event.target.value)}
             required
@@ -482,7 +485,7 @@ ${message}`;
 
           <input
             type="email"
-            placeholder="Email Address"
+            placeholder="Alamat Email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
@@ -490,7 +493,7 @@ ${message}`;
 
           <input
             type="tel"
-            placeholder="Phone Number"
+            placeholder="Nomor Telepon"
             value={phone}
             onChange={(event) => setPhone(event.target.value)}
             required
@@ -498,13 +501,13 @@ ${message}`;
 
           <textarea
             rows="6"
-            placeholder="Tell me about your project..."
+            placeholder="Deskripsi"
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             required
           />
 
-          <button type="submit">Send Message</button>
+          <button type="submit">Kirim Pesan</button>
         </motion.form>
       </div>
     </motion.section>

@@ -383,7 +383,7 @@ function Certificate() {
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.8 }}
       >
-        <h2>Certificate</h2>
+        <h2>Sertifikat</h2>
       </motion.div>
 
       <div className="mz-certificate-grid">
@@ -431,7 +431,7 @@ function Certificate() {
                   scale: 0.95,
                 }}
               >
-                View Certificate
+                Detail Sertifikat
               </motion.button>
             </div>
           </motion.div>
