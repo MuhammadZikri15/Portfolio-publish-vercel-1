@@ -3,13 +3,18 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [showCV, setShowCV] = useState(false);
+  const cvPdf = `${import.meta.env.BASE_URL}cvmzikri.pdf`;
+
+  const cvImage = `${import.meta.env.BASE_URL}cvmzikri.png`;
+
+  const logoSrc = `${import.meta.env.BASE_URL}logoz.png`;
 
   const navItems = [
-    { label: "About", href: "#about" },
+    { label: "Tentang", href: "#about" },
     { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
-    { label: "Certificate", href: "#certificate" },
-    { label: "Contact", href: "#contact" },
+    { label: "Proyek", href: "#projects" },
+    { label: "Sertifikat", href: "#certificate" },
   ];
 
   const closeMenu = () => setOpen(false);
@@ -86,13 +91,11 @@ function Navbar() {
       opacity: 0,
       y: -18,
       scale: 0.96,
-      filter: "blur(8px)",
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
       transition: {
         duration: 0.28,
         ease: "easeOut",
@@ -104,7 +107,6 @@ function Navbar() {
       opacity: 0,
       y: -18,
       scale: 0.96,
-      filter: "blur(8px)",
       transition: {
         duration: 0.22,
         ease: "easeIn",
@@ -131,425 +133,411 @@ function Navbar() {
     <>
       <style>
         {`
-          .mz-navbar,
-          .mz-navbar * {
-            box-sizing: border-box;
-          }
 
-          .mz-navbar {
-            width: 100%;
-            height: 84px;
-            padding: 0 6%;
-            background: #040e1f;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            overflow: hidden;
-          }
+/* ================= NAVBAR CSS ================= */
 
-          .mz-navbar::before {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: -40%;
-            width: 40%;
-            height: 1px;
-            background: linear-gradient(
-              90deg,
-              transparent,
-              rgba(16, 185, 129, 0.9),
-              transparent
-            );
-            animation: mz-navbar-line 4s ease-in-out infinite;
-            pointer-events: none;
-          }
+.pp-navbar,
+.pp-navbar * {
+  box-sizing: border-box;
+}
 
-          .mz-navbar-glow {
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            border-radius: 999px;
-            background: rgba(16, 185, 129, 0.1);
-            filter: blur(70px);
-            pointer-events: none;
-            animation: mz-navbar-glow 5s ease-in-out infinite;
-          }
+.pp-navbar {
+  width:100%;
+  height:var(--nav-height,84px);
+  padding-left:var(--container-x,8%) !important;
+  padding-right:var(--container-x,8%) !important;
+  background:#fff !important;
+  color:#000 !important;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1.8px solid #8f8f8f;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
+}
 
-          .mz-navbar-glow-left {
-            left: -80px;
-            top: -95px;
-          }
 
-          .mz-navbar-glow-right {
-            right: -90px;
-            bottom: -115px;
-            animation-delay: 1.2s;
-          }
+/* logo */
 
-          .mz-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 2;
-          }
+.pp-navbar-logo{
+  height:84px;
+  display:flex;
+  align-items:center;
+  margin-left:-22px;
+}
 
-          .mz-logo img {
-            width: clamp(130px, 14vw, 210px);
-            max-height: 70px;
-            object-fit: contain;
-            display: block;
-            transition: transform 0.3s ease, filter 0.3s ease;
-          }
+.pp-navbar-logo img{
+  width:106px;
+}
 
-          .mz-logo:hover img {
-            transform: translateY(-2px) scale(1.03);
-            filter: drop-shadow(0 0 14px rgba(16, 185, 129, 0.2));
-          }
 
-          .mz-nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            position: relative;
-            z-index: 2;
-          }
+/* menu desktop */
 
-          .mz-nav-link {
-            color: #a7b0c0;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            padding-bottom: 6px;
-            position: relative;
-            transition: color 0.3s ease, transform 0.3s ease;
-          }
+.pp-navbar-links{
+ display:flex;
+ align-items:center;
+ gap:18px;
+}
 
-          .mz-nav-link:hover {
-            color: #10b981;
-            transform: translateY(-2px);
-          }
 
-          .mz-nav-link::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #10b981;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-          }
+.pp-navbar-link{
+ color:#000 !important;
+ text-decoration:none;
+ font-size:14px;
+ font-weight:650;
+}
 
-          .mz-nav-link:hover::after {
-            transform: scaleX(1);
-          }
+.pp-navbar-mobile-menu .pp-navbar-link{
+ width:100%;
+ padding:14px 18px;
+ border:2px solid #000;
+ border-radius:16px;
+ background:#fff;
+ text-align:center;
+ font-size:16px;
+}
 
-          .mz-hire-btn {
-            color: #10b981;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            border: 2px solid rgba(16, 185, 129, 0.75);
-            border-radius: 10px;
-            padding: 11px 22px;
-            background: rgba(16, 185, 129, 0.08);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-          }
 
-          .mz-hire-btn:hover {
-            background: #10b981;
-            color: #06111f;
-            border-color: #10b981;
-            transform: translateY(-3px);
-            box-shadow: 0 0 24px rgba(16, 185, 129, 0.22);
-          }
+/* button */
 
-          .mz-menu-btn {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.04);
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
-            z-index: 1002;
-            transition: all 0.3s ease;
-          }
+.pp-navbar-hire-btn{
+ color:#000;
+ background:#f59e0b;
+ border:2px solid #000;
+ border-radius:40px;
+ padding:12px 24px;
+ font-weight:700;
+ box-shadow:5px 5px 0 #92400e;
+}
 
-          .mz-menu-btn:hover {
-            border-color: rgba(16, 185, 129, 0.55);
-            background: rgba(16, 185, 129, 0.12);
-            box-shadow: 0 0 22px rgba(16, 185, 129, 0.14);
-          }
 
-          .mz-hamburger {
-            width: 22px;
-            height: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-          }
 
-          .mz-hamburger span {
-            width: 100%;
-            height: 2px;
-            background: #ffffff;
-            border-radius: 999px;
-            transition: all 0.3s ease;
-          }
+/* hamburger */
 
-          .mz-hamburger.active span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-            background: #10b981;
-          }
+.pp-navbar-menu-btn{
+ display:none;
+ width:46px;
+ height:46px;
+ border:2px solid #000;
+ background:#f3e4c8;
+ border-radius:14px;
+}
 
-          .mz-hamburger.active span:nth-child(2) {
-            opacity: 0;
-          }
 
-          .mz-hamburger.active span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-            background: #10b981;
-          }
+/* MOBILE MENU */
 
-          .mz-mobile-backdrop {
-            position: fixed;
-            top: 84px;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 84px);
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(5px);
-            z-index: 998;
-          }
+.pp-navbar-mobile-menu{
+ position:fixed;
+ top:98px;
+ left:5%;
+ right:5%;
+ background:#f3e4c8;
+ border:2px solid #000;
+ border-radius:24px;
+ padding:22px;
+ z-index:1001;
 
-          .mz-mobile-menu {
-            position: fixed;
-            top: 96px;
-            left: 16px;
-            right: 16px;
-            background: #071426;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 18px;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            gap: 18px;
-            z-index: 1001;
-            box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-            overflow: hidden;
-          }
+ display:flex;
+ flex-direction:column;
+ gap:16px;
 
-          .mz-mobile-menu::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -45%;
-            width: 45%;
-            height: 1px;
-            background: linear-gradient(
-              90deg,
-              transparent,
-              rgba(16, 185, 129, 0.9),
-              transparent
-            );
-            animation: mz-navbar-line 3.2s ease-in-out infinite;
-            pointer-events: none;
-          }
+ box-shadow:6px 6px 0 #000;
+}
 
-          .mz-mobile-menu .mz-nav-link {
-            width: 100%;
-            font-size: 16px;
-            padding: 10px 0;
-          }
+.pp-navbar-mobile-menu .pp-navbar-hire-btn{
+ width:100%;
+ justify-content:center;
+ display:flex;
+}
 
-          .mz-mobile-menu .mz-hire-btn {
-            width: 100%;
-            text-align: center;
-            margin-top: 6px;
-          }
+/* HAMBURGER ICON */
 
-          @keyframes mz-navbar-line {
-            0% {
-              left: -40%;
-              opacity: 0;
-            }
+.pp-navbar-hamburger{
+ width:22px;
+ height:18px;
+ position:relative;
+ display:flex;
+ flex-direction:column;
+ justify-content:space-between;
+}
 
-            20% {
-              opacity: 1;
-            }
+.pp-navbar-hamburger span{
+ display:block;
+ width:100%;
+ height:2.5px;
+ background:#000;
+ border-radius:20px;
+ transition:.3s ease;
+}
 
-            80% {
-              opacity: 1;
-            }
 
-            100% {
-              left: 100%;
-              opacity: 0;
-            }
-          }
+/* animasi jadi X */
 
-          @keyframes mz-navbar-glow {
-            0%,
-            100% {
-              opacity: 0.55;
-              transform: scale(1);
-            }
+.pp-navbar-hamburger.active span:nth-child(1){
+ transform:translateY(7.5px) rotate(45deg);
+}
 
-            50% {
-              opacity: 0.9;
-              transform: scale(1.16);
-            }
-          }
+.pp-navbar-hamburger.active span:nth-child(2){
+ opacity:0;
+}
 
-          @media (max-width: 992px) {
-            .mz-navbar {
-              padding: 0 4%;
-            }
+.pp-navbar-hamburger.active span:nth-child(3){
+ transform:translateY(-7.5px) rotate(-45deg);
+}
 
-            .mz-nav-links {
-              gap: 20px;
-            }
 
-            .mz-logo img {
-              width: 155px;
-              max-height: 64px;
-            }
-          }
+/* ================= RESPONSIVE ================= */
 
-          @media (max-width: 768px) {
-            .mz-navbar {
-              height: 76px;
-              padding: 0 18px;
-            }
 
-            .mz-logo img {
-              width: 135px;
-              max-height: 56px;
-            }
+@media(max-width:768px){
 
-            .mz-desktop-links {
-              display: none;
-            }
+.pp-navbar{
+ padding-left:5%!important;
+ padding-right:5%!important;
+}
 
-            .mz-menu-btn {
-              display: inline-flex;
-            }
 
-            .mz-mobile-backdrop {
-              top: 76px;
-              height: calc(100vh - 76px);
-            }
+.pp-navbar-desktop-links{
+ display:none;
+}
 
-            .mz-mobile-menu {
-              top: 88px;
-            }
-          }
 
-          @media (max-width: 480px) {
-            .mz-navbar {
-              padding: 0 14px;
-            }
+.pp-navbar-menu-btn{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
 
-            .mz-logo img {
-              width: 125px;
-              max-height: 52px;
-            }
 
-            .mz-mobile-menu {
-              left: 12px;
-              right: 12px;
-              padding: 20px;
-            }
-          }
-        `}
+.pp-navbar-logo img{
+ width:86px;
+}
+
+
+}
+
+
+
+@media(max-width:480px){
+
+.pp-navbar-logo img{
+ width:78px;
+}
+
+
+.pp-navbar-mobile-menu{
+ padding:18px;
+}
+
+}
+
+
+
+
+@media(max-width:360px){
+
+.pp-navbar-logo img{
+ width:72px;
+}
+
+
+}
+
+
+
+/* ================= CV MODAL TARUH DISINI ================= */
+
+
+.pp-cv-overlay{
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.75);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+z-index:3000;
+
+padding:20px;
+
+}
+
+
+
+.pp-cv-modal{
+  width:min(850px,100%);
+  max-height:90vh;
+  background:white;
+  border:3px solid #000;
+  border-radius:20px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  box-shadow:8px 8px 0 #000;
+}
+
+
+
+
+.pp-cv-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:16px 20px;
+
+border-bottom:2px solid #000;
+
+}
+
+
+
+.pp-cv-close{
+
+width:42px;
+
+height:42px;
+
+border:2px solid #000;
+
+border-radius:12px;
+
+background:#f59e0b;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+
+
+.pp-cv-content{
+  flex:1;
+  overflow:auto;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  background:#fff;
+  padding:10px;
+}
+
+
+.pp-cv-content img{
+  width:100%;
+  height:auto;
+  max-width:800px;
+  object-fit:contain;
+  display:block;
+}
+
+
+.pp-cv-footer{
+
+padding:16px;
+
+text-align:center;
+
+border-top:2px solid #000;
+
+}
+
+
+
+.pp-cv-download{
+
+display:inline-block;
+
+padding:12px 24px;
+
+background:#f59e0b;
+
+color:#000;
+
+text-decoration:none;
+
+font-weight:700;
+
+border:2px solid #000;
+
+border-radius:12px;
+
+}
+
+
+
+`}
       </style>
 
       <motion.nav
-        className="mz-navbar"
+        className="pp-navbar"
         variants={navbarVariants}
         initial="hidden"
         animate="visible"
       >
-        <span className="mz-navbar-glow mz-navbar-glow-left"></span>
-        <span className="mz-navbar-glow mz-navbar-glow-right"></span>
-
         <motion.a
           href="#home"
-          className="mz-logo"
+          className="pp-navbar-logo"
           onClick={closeMenu}
           variants={logoVariants}
           whileTap={{ scale: 0.96 }}
         >
-          <img src="/logomz.png" alt="Muhammad Zikri Logo" />
+          <img src={logoSrc} alt="Muhammad Zikri Logo" />
         </motion.a>
 
         <motion.div
-          className="mz-nav-links mz-desktop-links"
+          className="pp-navbar-links pp-navbar-desktop-links"
           variants={desktopLinksVariants}
         >
           {navItems.map((item) => (
             <motion.a
               key={item.label}
               href={item.href}
-              className="mz-nav-link"
+              className="pp-navbar-link"
               onClick={closeMenu}
               variants={linkItemVariants}
-              whileHover={{
-                y: -2,
-                transition: { duration: 0.2, ease: "easeOut" },
-              }}
               whileTap={{ scale: 0.94 }}
             >
               {item.label}
             </motion.a>
           ))}
 
-          <motion.a
-            href="#contact"
-            className="mz-hire-btn"
-            onClick={closeMenu}
+          <motion.button
+            type="button"
+            className="pp-navbar-hire-btn"
+            onClick={() => setShowCV(true)}
             variants={linkItemVariants}
-            whileHover={{
-              y: -3,
-              scale: 1.04,
-              transition: { duration: 0.22, ease: "easeOut" },
-            }}
             whileTap={{ scale: 0.94 }}
           >
-            Hire Me
-          </motion.a>
+            Resume
+          </motion.button>
         </motion.div>
 
         <motion.button
           type="button"
-          className="mz-menu-btn"
+          className="pp-navbar-menu-btn"
           onClick={() => setOpen((prev) => !prev)}
           aria-label="Toggle navigation menu"
           aria-expanded={open}
           variants={linkItemVariants}
-          whileHover={{
-            y: -2,
-            scale: 1.05,
-            transition: { duration: 0.22, ease: "easeOut" },
-          }}
           whileTap={{ scale: 0.92 }}
         >
-          <span className={open ? "mz-hamburger active" : "mz-hamburger"}>
+          <span
+            className={
+              open ? "pp-navbar-hamburger active" : "pp-navbar-hamburger"
+            }
+          >
             <span></span>
             <span></span>
             <span></span>
@@ -561,7 +549,7 @@ function Navbar() {
         {open && (
           <>
             <motion.div
-              className="mz-mobile-backdrop"
+              className="pp-navbar-mobile-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -570,7 +558,7 @@ function Navbar() {
             />
 
             <motion.div
-              className="mz-mobile-menu"
+              className="pp-navbar-mobile-menu"
               variants={mobileMenuVariants}
               initial="hidden"
               animate="visible"
@@ -580,36 +568,71 @@ function Navbar() {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  className="mz-nav-link"
+                  className="pp-navbar-link"
                   onClick={closeMenu}
                   variants={mobileItemVariants}
-                  whileHover={{
-                    x: 4,
-                    color: "#10b981",
-                    transition: { duration: 0.2 },
-                  }}
                   whileTap={{ scale: 0.96 }}
                 >
                   {item.label}
                 </motion.a>
               ))}
 
-              <motion.a
-                href="#contact"
-                className="mz-hire-btn"
-                onClick={closeMenu}
-                variants={mobileItemVariants}
-                whileHover={{
-                  y: -3,
-                  scale: 1.02,
-                  transition: { duration: 0.22, ease: "easeOut" },
+              <motion.button
+                type="button"
+                className="pp-navbar-hire-btn"
+                onClick={() => {
+                  closeMenu();
+                  setShowCV(true);
                 }}
-                whileTap={{ scale: 0.95 }}
               >
-                Kontak Saya
-              </motion.a>
+                Resume
+              </motion.button>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showCV && (
+          <motion.div
+            className="pp-cv-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowCV(false)}
+          >
+            <motion.div
+              className="pp-cv-modal"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="pp-cv-header">
+                <h3>Curriculum Vitae</h3>
+
+                <button
+                  className="pp-cv-close"
+                  onClick={() => setShowCV(false)}
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="pp-cv-content">
+                <img src={cvImage} alt="CV" />
+              </div>
+
+              <div className="pp-cv-footer">
+                <a
+                  href={cvPdf}
+                  download="cvmzikri.pdf"
+                  className="pp-cv-download"
+                >
+                  Download CV
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

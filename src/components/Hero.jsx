@@ -1,132 +1,491 @@
+import { useState } from "react";
 import heroImage from "../assets/zikri.png";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 
 function Hero() {
+  const [nameDone, setNameDone] = useState(false);
+  const [buttonsDone, setButtonsDone] = useState(false);
+
+  const handleNameDone = () => {
+    setNameDone(true);
+
+    setTimeout(() => {
+      setButtonsDone(true);
+    }, 900);
+  };
+
   return (
-    <motion.section
-      id="home"
-      className="hero"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
+    <section id="home" className="pp-hero">
       <style>
         {`
-          .hero-buttons {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
+          .pp-hero,
+          .pp-hero * {
+            box-sizing: border-box;
           }
 
-          .btn-primary,
-          .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 155px;
-            padding: 20px 28px;
-            border-radius: 15px;
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 1;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
+          .pp-hero {
+            min-height: 100vh !important;
+            padding: calc(var(--nav-height, 84px) + 56px) var(--container-x, 8%) 80px !important;
+            background: #ffffff !important;
+            color: #000000 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 70px !important;
+            position: relative !important;
+            overflow: hidden !important;
           }
 
-          .btn-primary {
-            background: rgba(16, 185, 129, 0.16);
-            color: #10b981;
-            border: 2px solid rgba(16, 185, 129, 0.75);
-            box-shadow: none;
+          .pp-hero-content {
+            flex: 1 1 520px !important;
+            max-width: 680px !important;
+            position: relative !important;
+            z-index: 5 !important;
           }
 
-          .btn-primary:hover {
-            background: #10b981;
-            color: #06111f;
-            border-color: #10b981;
-            box-shadow: 0 0 28px rgba(16, 185, 129, 0.24);
+          .pp-hero-subtitle {
+            color: #000000 !important;
+            font-size: 14px !important;
+            font-weight: 900 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 3px !important;
+            margin: 0 0 22px 0 !important;
           }
 
-          .btn-secondary {
-            background: rgba(16, 185, 129, 0.08);
-            color: #10b981;
-            border: 2px solid rgba(16, 185, 129, 0.55);
-            box-shadow: none;
+          .pp-hero-heading {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 6px !important;
+            margin-bottom: 26px !important;
           }
 
-          .btn-secondary:hover {
-            background: #10b981;
-            color: #06111f;
-            border-color: #10b981;
-            box-shadow: 0 0 28px rgba(16, 185, 129, 0.24);
+          .pp-hero-title-top {
+            display: block !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            color: transparent !important;
+            -webkit-text-fill-color: #ffffff !important;
+            -webkit-text-stroke: 2.5px #f59e0b !important;
+            text-stroke: 2.5px #f59e0b !important;
+            font-size: clamp(52px, 5.6vw, 78px) !important;
+            line-height: 1.05 !important;
+            font-weight: 900 !important;
+            letter-spacing: -2px !important;
+            opacity: 1 !important;
+            text-shadow: none !important;
+          }
+
+          .pp-hero-name-wrapper {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: visible !important;
+          }
+
+          .pp-hero-name,
+          .pp-hero-name span {
+            display: block !important;
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+            font-size: clamp(54px, 5.8vw, 82px) !important;
+            line-height: 1.05 !important;
+            font-weight: 900 !important;
+            letter-spacing: -2px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            opacity: 1 !important;
+            white-space: nowrap !important;
+          }
+
+          .pp-hero-reveal {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transform: translateY(30px) !important;
+            transition:
+              opacity 0.75s ease,
+              transform 0.75s ease,
+              visibility 0.75s ease !important;
+          }
+
+          .pp-hero-reveal.show {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) !important;
+          }
+
+          .pp-hero-description {
+            max-width: 640px !important;
+            color: #000000 !important;
+            font-size: 18px !important;
+            line-height: 1.8 !important;
+            font-weight: 500 !important;
+            margin: 0 0 34px !important;
+          }
+
+          .pp-hero-buttons {
+            display: flex !important;
+            align-items: center !important;
+            gap: 18px !important;
+            flex-wrap: wrap !important;
+          }
+
+          .pp-hero-buttons.pp-hero-reveal {
+            transform: translateY(24px) !important;
+          }
+
+          .pp-hero-buttons.pp-hero-reveal.show {
+            transform: translateY(0) !important;
+          }
+
+          .pp-hero-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-width: 160px !important;
+            padding: 17px 42px !important;
+            border-radius: 40px !important;
+            font-size: 15px !important;
+            font-weight: 800 !important;
+            line-height: 1 !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+            position: relative !important;
+            transition: all 0.28s ease !important;
+          }
+
+          .pp-hero-btn-primary {
+            background: #f3e4c8 !important;
+            color: #000000 !important;
+            border: 2px solid #2f2f2f !important;
+            box-shadow: 6px 6px 0 #2f2f2f !important;
+          }
+
+          .pp-hero-btn-primary:hover {
+            background: #ead6b0 !important;
+            color: #000000 !important;
+            border-color: #000000 !important;
+            box-shadow: 3px 3px 0 #000000 !important;
+            transform: translate(3px, 3px) !important;
+          }
+
+          .pp-hero-btn-secondary {
+            background: #f59e0b !important;
+            color: #000000 !important;
+            border: 2px solid #2f2f2f !important;
+            box-shadow: 6px 6px 0 #92400e !important;
+          }
+
+          .pp-hero-btn-secondary:hover {
+            background: #fb923c !important;
+            color: #000000 !important;
+            border-color: #000000 !important;
+            box-shadow: 3px 3px 0 #7c2d12 !important;
+            transform: translate(3px, 3px) !important;
+          }
+
+          .pp-hero-image {
+            flex: 1 1 440px !important;
+            display: flex !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+            min-width: 0 !important;
+            padding-right: 2% !important;
+          }
+
+          .pp-hero-float {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: max-content !important;
+          }
+
+          .pp-hero-image-wrapper {
+            position: relative !important;
+            width: clamp(390px, 36vw, 540px) !important;
+            aspect-ratio: 4.4 / 5.6 !important;
+            height: auto !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: flex-end !important;
+            overflow: visible !important;
+            transform: translateX(45px) !important;
+          }
+
+          .pp-hero-frame-back {
+            position: absolute !important;
+            inset: 26px -26px -26px 26px !important;
+            background: #f3e4c8 !important;
+            border: 5px solid #000000 !important;
+            z-index: 1 !important;
+          }
+
+          .pp-hero-frame-main {
+            position: absolute !important;
+            inset: 0 !important;
+            background: #f3e4c8 !important;
+            border: 5px solid #000000 !important;
+            z-index: 2 !important;
+          }
+
+          .pp-hero-frame-inner {
+            position: absolute !important;
+            inset: 26px !important;
+            border: 3px solid #000000 !important;
+            z-index: 3 !important;
+            pointer-events: none !important;
+          }
+
+          .pp-hero-image-wrapper img {
+            position: relative !important;
+            z-index: 4 !important;
+            width: 78% !important;
+            height: auto !important;
+            object-fit: contain !important;
+            transform: translateX(7px) translateY(-28px) !important;
+            filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.16)) !important;
+          }
+
+          @media (max-width: 992px) {
+            .pp-hero {
+              min-height: auto !important;
+              padding: calc(var(--nav-height, 80px) + 36px) var(--container-x, 6%) 64px !important;
+              flex-direction: column !important;
+              text-align: center !important;
+              gap: 0 !important;
+              overflow-x: hidden !important;
+              overflow-y: visible !important;
+            }
+
+            .pp-hero-image {
+              order: 1 !important;
+              flex: 0 1 auto !important;
+              width: 100% !important;
+              max-width: 100% !important;
+              justify-content: center !important;
+              padding-right: 0 !important;
+              margin: 0 0 58px 0 !important;
+            }
+
+            .pp-hero-content {
+              order: 2 !important;
+              flex: 0 1 auto !important;
+              width: 100% !important;
+              max-width: 100% !important;
+              margin-top: 20px !important;
+            }
+
+            .pp-hero-float {
+              width: 100% !important;
+            }
+
+            .pp-hero-image-wrapper {
+              width: min(350px, 78vw) !important;
+              aspect-ratio: 4.4 / 5.6 !important;
+              transform: translateX(0) !important;
+            }
+
+            .pp-hero-image-wrapper img {
+              width: 76% !important;
+              transform: translateX(5px) translateY(-20px) !important;
+            }
+
+            .pp-hero-heading {
+              align-items: center !important;
+            }
+
+            .pp-hero-name,
+            .pp-hero-name span {
+              white-space: normal !important;
+              text-align: center !important;
+            }
+
+            .pp-hero-description {
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .pp-hero-buttons {
+              justify-content: center !important;
+            }
           }
 
           @media (max-width: 768px) {
-            .hero-buttons {
-              gap: 14px;
+            .pp-hero {
+              padding-top: calc(var(--nav-height, 76px) + 32px) !important;
+              padding-bottom: 54px !important;
             }
 
-            .btn-primary,
-            .btn-secondary {
-              min-width: 145px;
-              padding: 14px 22px;
-              border-radius: 16px;
-              font-size: 14px;
+            .pp-hero-image {
+              margin-bottom: 62px !important;
+            }
+
+            .pp-hero-content {
+              margin-top: 18px !important;
+            }
+
+            .pp-hero-subtitle {
+              font-size: 12px !important;
+              letter-spacing: 2.5px !important;
+              margin-bottom: 16px !important;
+            }
+
+            .pp-hero-title-top {
+              font-size: clamp(38px, 10vw, 52px) !important;
+              -webkit-text-stroke: 2px #f59e0b !important;
+              text-stroke: 2px #f59e0b !important;
+            }
+
+            .pp-hero-name,
+            .pp-hero-name span {
+              font-size: clamp(36px, 9vw, 54px) !important;
+            }
+
+            .pp-hero-description {
+              font-size: 15.5px !important;
+              line-height: 1.7 !important;
+              margin-bottom: 28px !important;
+            }
+
+            .pp-hero-image-wrapper {
+              width: min(315px, 76vw) !important;
+            }
+
+            .pp-hero-image-wrapper img {
+              width: 77% !important;
+              transform: translateX(5px) translateY(-22px) !important;
+            }
+
+            .pp-hero-frame-back {
+              inset: 18px -18px -18px 18px !important;
+              border-width: 4px !important;
+            }
+
+            .pp-hero-frame-main {
+              border-width: 4px !important;
+            }
+
+            .pp-hero-frame-inner {
+              inset: 20px !important;
+              border-width: 2px !important;
             }
           }
 
           @media (max-width: 480px) {
-            .hero-buttons {
-              width: 100%;
-              flex-direction: column;
-              align-items: stretch;
+            .pp-hero {
+              padding-left: 5% !important;
+              padding-right: 5% !important;
+              padding-top: calc(var(--nav-height, 76px) + 28px) !important;
+              padding-bottom: 48px !important;
             }
 
-            .btn-primary,
-            .btn-secondary {
-              width: 100%;
-              min-width: 100%;
-              padding: 14px 20px;
-              border-radius: 15px;
+            .pp-hero-image {
+              margin-bottom: 58px !important;
+            }
+
+            .pp-hero-content {
+              margin-top: 16px !important;
+            }
+
+            .pp-hero-title-top {
+              font-size: clamp(36px, 11vw, 48px) !important;
+              -webkit-text-stroke: 1.8px #f59e0b !important;
+              text-stroke: 1.8px #f59e0b !important;
+            }
+
+            .pp-hero-image-wrapper {
+              width: min(280px, 72vw) !important;
+            }
+
+            .pp-hero-image-wrapper img {
+              width: 78% !important;
+              transform: translateX(4px) translateY(-22px) !important;
+            }
+
+            .pp-hero-frame-back {
+              inset: 14px -14px -14px 14px !important;
+              border-width: 3px !important;
+            }
+
+            .pp-hero-frame-main {
+              border-width: 3px !important;
+            }
+
+            .pp-hero-frame-inner {
+              inset: 16px !important;
+              border-width: 2px !important;
+            }
+
+            .pp-hero-buttons {
+              width: 100% !important;
+              flex-direction: column !important;
+              align-items: stretch !important;
+              gap: 16px !important;
+            }
+
+            .pp-hero-btn {
+              width: 100% !important;
+              min-width: 100% !important;
+              padding: 17px 32px !important;
+              border-radius: 40px !important;
+            }
+          }
+
+          @media (max-width: 360px) {
+            .pp-hero {
+              padding-top: calc(var(--nav-height, 76px) + 24px) !important;
+            }
+
+            .pp-hero-image {
+              margin-bottom: 52px !important;
+            }
+
+            .pp-hero-image-wrapper {
+              width: min(250px, 70vw) !important;
+            }
+
+            .pp-hero-title-top {
+              font-size: 34px !important;
+              -webkit-text-stroke: 1.6px #f59e0b !important;
+              text-stroke: 1.6px #f59e0b !important;
+            }
+
+            .pp-hero-name,
+            .pp-hero-name span {
+              font-size: 34px !important;
+            }
+
+            .pp-hero-description {
+              font-size: 14.5px !important;
             }
           }
         `}
       </style>
 
-      <motion.div
-        className="hero-content"
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <span className="hero-blur blur-one"></span>
-        <span className="hero-blur blur-two"></span>
+      <div className="pp-hero-content">
+        <h4 className="pp-hero-subtitle">PORTFOLIO</h4>
 
-        <motion.h4
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          PORTFOLIO
-        </motion.h4>
-
-        <div className="hero-heading">
+        <div className="pp-hero-heading">
           <TypeAnimation
             sequence={[500, "Hallo, Saya"]}
             wrapper="h1"
             speed={200}
             cursor={false}
             repeat={0}
-            className="hero-title-top hi-unique"
+            className="pp-hero-title-top"
           />
 
-          <div className="hero-name-wrapper">
-            <h2 className="hero-name">
+          <div className="pp-hero-name-wrapper">
+            <h2 className="pp-hero-name">
               <TypeAnimation
-                sequence={[1800, "Muhammad Zikri"]}
+                sequence={[
+                  1800,
+                  "Muhammad Zikri",
+                  () => {
+                    handleNameDone();
+                  },
+                ]}
                 speed={200}
                 cursor={false}
                 repeat={0}
@@ -135,75 +494,60 @@ function Hero() {
           </div>
         </div>
 
-        <motion.p
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 3.5, duration: 0.8 }}
+        <p
+          className={
+            nameDone
+              ? "pp-hero-description pp-hero-reveal show"
+              : "pp-hero-description pp-hero-reveal"
+          }
         >
-          Mahasiswa semester 6 jurusan Sistem Informasi di Universitas Bina
-          Sarana Informatika dengan minat pada pengembangan web, desain
-          antarmuka, dan teknologi digital. Berpengalaman mengerjakan berbagai
-          proyek kampus maupun individu, mulai dari perancangan UI website
-          hingga pengembangan aplikasi. Memiliki ketertarikan dalam
-          menggabungkan keterampilan teknis dan pemecahan masalah kreatif untuk
-          menciptakan solusi digital yang efektif, fungsional, dan menarik.
-        </motion.p>
+          Saya tertarik pada Front-End Development dan UI/UX Design, serta
+          berfokus pada pengembangan produk digital yang intuitif dan
+          berorientasi pada kebutuhan pengguna.
+        </p>
 
-        <motion.div
-          className="hero-buttons"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 4, duration: 0.8 }}
+        <div
+          className={
+            buttonsDone
+              ? "pp-hero-buttons pp-hero-reveal show"
+              : "pp-hero-buttons pp-hero-reveal"
+          }
         >
           <motion.a
             href="#projects"
-            className="btn-primary"
-            whileHover={{ scale: 1.08, y: -3 }}
-            whileTap={{ scale: 0.95 }}
+            className="pp-hero-btn pp-hero-btn-primary"
+            whileTap={{ scale: 0.96 }}
           >
             Kunjungi
           </motion.a>
 
           <motion.a
             href="#contact"
-            className="btn-secondary"
-            whileHover={{ scale: 1.08, y: -3 }}
-            whileTap={{ scale: 0.95 }}
+            className="pp-hero-btn pp-hero-btn-secondary"
+            whileTap={{ scale: 0.96 }}
           >
             Kontak
           </motion.a>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
-      <motion.div
-        className="hero-image"
-        initial={{ x: 120, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1, delay: 0.3 }}
-      >
-        <motion.div
-          className="hero-image-wrapper"
-          animate={{ y: [0, -15, 0] }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <span className="hero-shape"></span>
-          <span className="hero-shape-glow"></span>
+      <div className="pp-hero-image">
+        <div className="pp-hero-float">
+          <div className="pp-hero-image-wrapper">
+            <span className="pp-hero-frame-back"></span>
+            <span className="pp-hero-frame-main"></span>
+            <span className="pp-hero-frame-inner"></span>
 
-          <motion.img
-            src={heroImage}
-            alt="Muhammad Zikri"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.4 }}
-          />
-
-          <span className="hero-image-shadow"></span>
-        </motion.div>
-      </motion.div>
-    </motion.section>
+            <motion.img
+              src={heroImage}
+              alt="Muhammad Zikri"
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.4 }}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
