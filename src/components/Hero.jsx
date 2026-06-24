@@ -85,19 +85,19 @@ function Hero() {
           }
 
           .pp-hero-name,
-          .pp-hero-name span {
-            display: block !important;
-            color: #000000 !important;
-            -webkit-text-fill-color: #000000 !important;
-            font-size: clamp(54px, 5.8vw, 82px) !important;
-            line-height: 1.05 !important;
-            font-weight: 900 !important;
-            letter-spacing: -2px !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            opacity: 1 !important;
-            white-space: nowrap !important;
-          }
+.pp-hero-name span {
+  display: block !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  font-size: clamp(42px, 4.2vw, 62px) !important;
+  line-height: 1.05 !important;
+  font-weight: 900 !important;
+  letter-spacing: -2px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  white-space: nowrap !important;
+}
 
           .pp-hero-reveal {
             opacity: 0 !important;
@@ -339,7 +339,7 @@ function Hero() {
 
             .pp-hero-name,
             .pp-hero-name span {
-              font-size: clamp(36px, 9vw, 54px) !important;
+              font-size: clamp(32px, 8vw, 46px) !important;
             }
 
             .pp-hero-description {
@@ -354,7 +354,7 @@ function Hero() {
 
             .pp-hero-image-wrapper img {
               width: 77% !important;
-              transform: translateX(5px) translateY(-22px) !important;
+               transform: translateX(5px) translateY(-20px) !important;
             }
 
             .pp-hero-frame-back {
@@ -400,7 +400,7 @@ function Hero() {
 
             .pp-hero-image-wrapper img {
               width: 78% !important;
-              transform: translateX(4px) translateY(-22px) !important;
+              transform: translateX(4px) translateY(5px) !important;
             }
 
             .pp-hero-frame-back {
