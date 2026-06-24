@@ -311,7 +311,7 @@ function Hero() {
 
 .pp-hero-image-wrapper img {
   width: 82% !important;
-  transform: translateX(-50%) translateY(-20px) !important;
+  transform: translateX(-50%) translateY(-17px) !important;
 }
 
 .pp-hero-frame-back {
