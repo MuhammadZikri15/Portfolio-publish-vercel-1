@@ -494,17 +494,13 @@ function Projects() {
             line-height: 1.25;
           }
 
-          .pp-projects-info h3 {
+ .pp-projects-info h3 {
   margin: 0;
   color: #000000;
   font-size: 18.5px;
   line-height: 1.2;
   font-weight: 720;
   overflow-wrap: anywhere;
-
-  min-height: 44px;
-  display: flex;
-  align-items: center;
 }
 
           .pp-projects-detail-btn,
