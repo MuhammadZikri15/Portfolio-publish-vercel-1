@@ -450,15 +450,16 @@ function Projects() {
   justify-content: space-between;
   gap: 14px;
   background: transparent;
-  min-height: 92px;
+  min-height: 120px;
 }
 
-          .pp-projects-info-wrap {
-            min-width: 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-          }
+         .pp-projects-info-wrap {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(3px);
+}
 
           .pp-projects-icon-box {
             width: 42px;
@@ -482,8 +483,9 @@ function Projects() {
           }
 
           .pp-projects-info {
-            min-width: 0;
-          }
+  min-width: 0;
+  transform: translateY(14px);
+}
 
           .pp-projects-category {
             display: block;
@@ -501,6 +503,10 @@ function Projects() {
   line-height: 1.2;
   font-weight: 720;
   overflow-wrap: anywhere;
+
+  min-height: 48px;
+  display: flex;
+  align-items: flex-start;
 }
 
           .pp-projects-detail-btn,
