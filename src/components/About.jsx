@@ -75,33 +75,43 @@ function About() {
             margin: 0;
           }
 
-          .pp-about-actions {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
-            margin-top: 32px;
-          }
+         .pp-about-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+  margin-top: 32px;
+}
 
-          .pp-about-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            min-width: 220px;
-            padding: 15px 22px;
-            border-radius: 14px;
-            border: 2px solid #2f2f2f;
-            color: #000000 !important;
-            font-size: 15px;
-            font-weight: 800;
-            line-height: 1.2;
-            text-decoration: none;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.28s ease;
-          }
+.pp-about-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 
+  min-width: 280px;
+  width: auto;
+  height: 54px;
+
+  padding: 15px 26px;
+
+  border-radius: 14px;
+  border: 2px solid #2f2f2f;
+
+  color: #000000 !important;
+  font-size: 15px;
+  font-weight: 800;
+
+  line-height: 1.2;
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  position: relative;
+  cursor: pointer;
+
+  transition: all 0.28s ease;
+}
           .pp-about-button-location {
             background: #f3e4c8;
             box-shadow: 6px 6px 0 #2f2f2f;
@@ -200,17 +210,18 @@ function About() {
             }
 
             .pp-about-actions {
-              gap: 16px;
-            }
+  flex-direction: column;
+  gap: 16px;
+}
 
             .pp-about-button {
-              width: 100%;
-              min-width: 100%;
-              justify-content: flex-start;
-              padding: 15px 18px;
-              font-size: 14px;
-            }
-          }
+  width: 100%;
+  height: 52px;
+  min-width: 100%;
+  justify-content: flex-start;
+  padding: 14px 18px;
+  font-size: 14px;
+}
 
           @media (max-width: 480px) {
             .pp-about {

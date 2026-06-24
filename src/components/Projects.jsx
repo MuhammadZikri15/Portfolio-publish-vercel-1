@@ -444,13 +444,14 @@ function Projects() {
           }
 
           .pp-projects-body {
-            padding: 15px 16px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            background: transparent;
-          }
+  padding: 15px 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: transparent;
+  min-height: 92px;
+}
 
           .pp-projects-info-wrap {
             min-width: 0;
@@ -494,13 +495,17 @@ function Projects() {
           }
 
           .pp-projects-info h3 {
-            margin: 0;
-            color: #000000;
-            font-size: 18.5px;
-            line-height: 1.2;
-            font-weight: 720;
-            overflow-wrap: anywhere;
-          }
+  margin: 0;
+  color: #000000;
+  font-size: 18.5px;
+  line-height: 1.2;
+  font-weight: 720;
+  overflow-wrap: anywhere;
+
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
 
           .pp-projects-detail-btn,
           .pp-projects-more-btn,
@@ -987,9 +992,7 @@ function Projects() {
               </div>
 
               {!showMoreFeed && (
-                <div className="pp-instagram-more-wrapper">
-                  
-                </div>
+                <div className="pp-instagram-more-wrapper"></div>
               )}
             </div>
           </motion.div>

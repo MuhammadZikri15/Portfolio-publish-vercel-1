@@ -202,50 +202,71 @@ function Hero() {
           }
 
           .pp-hero-image-wrapper {
-            position: relative !important;
-            width: clamp(390px, 36vw, 540px) !important;
-            aspect-ratio: 4.4 / 5.6 !important;
-            height: auto !important;
-            display: flex !important;
-            justify-content: center !important;
-            align-items: flex-end !important;
-            overflow: visible !important;
-            transform: translateX(45px) !important;
-          }
+  position: relative !important;
+  width: clamp(300px, 36vw, 520px) !important;
+  aspect-ratio: 4 / 5 !important;
+  height: auto !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-end !important;
+
+  overflow: hidden !important;
+
+  transform: translateX(45px) !important;
+}
 
           .pp-hero-frame-back {
-            position: absolute !important;
-            inset: 26px -26px -26px 26px !important;
-            background: #f3e4c8 !important;
-            border: 5px solid #000000 !important;
-            z-index: 1 !important;
-          }
+  position: absolute !important;
+
+  inset: 18px -18px -18px 18px !important;
+
+  background: #f3e4c8 !important;
+  border: 5px solid #000000 !important;
+
+  z-index: 1 !important;
+}
 
           .pp-hero-frame-main {
-            position: absolute !important;
-            inset: 0 !important;
-            background: #f3e4c8 !important;
-            border: 5px solid #000000 !important;
-            z-index: 2 !important;
-          }
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  background: #f3e4c8 !important;
+  border: 5px solid #000000 !important;
+
+  z-index: 2 !important;
+}
 
           .pp-hero-frame-inner {
-            position: absolute !important;
-            inset: 26px !important;
-            border: 3px solid #000000 !important;
-            z-index: 3 !important;
-            pointer-events: none !important;
-          }
+  position: absolute !important;
 
-          .pp-hero-image-wrapper img {
-            position: relative !important;
-            z-index: 4 !important;
-            width: 78% !important;
-            height: auto !important;
-            object-fit: contain !important;
-            transform: translateX(7px) translateY(-28px) !important;
-            filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.16)) !important;
-          }
+  inset: 18px !important;
+
+  border: 3px solid #000000 !important;
+
+  z-index: 3 !important;
+
+  pointer-events: none !important;
+}
+
+  .pp-hero-image-wrapper img {
+  position: absolute !important;
+
+  bottom: 0 !important;
+  left: 50% !important;
+
+  z-index: 4 !important;
+
+  width: 82% !important;
+  height: auto !important;
+
+  object-fit: contain !important;
+
+  transform: translateX(-50%) translateY(-20px) !important;
+
+  filter: drop-shadow(0 16px 28px rgba(0,0,0,0.16)) !important;
+}
 
           @media (max-width: 992px) {
             .pp-hero {
@@ -277,19 +298,40 @@ function Hero() {
             }
 
             .pp-hero-float {
-              width: 100% !important;
-            }
+  width: 100% !important;
+}
 
-            .pp-hero-image-wrapper {
-              width: min(350px, 78vw) !important;
-              aspect-ratio: 4.4 / 5.6 !important;
-              transform: translateX(0) !important;
-            }
 
-            .pp-hero-image-wrapper img {
-              width: 76% !important;
-              transform: translateX(5px) translateY(-20px) !important;
-            }
+/* TAMBAHKAN INI */
+.pp-hero-image-wrapper {
+  width: min(350px, 78vw) !important;
+  aspect-ratio: 4 / 5 !important;
+  transform: translateX(0) !important;
+}
+
+.pp-hero-image-wrapper img {
+  width: 82% !important;
+  transform: translateX(-50%) translateY(-20px) !important;
+}
+
+.pp-hero-frame-back {
+  inset: 18px -18px -18px 18px !important;
+}
+
+.pp-hero-frame-main {
+  border-width: 4px !important;
+}
+
+.pp-hero-frame-inner {
+  inset: 18px !important;
+  border-width: 2px !important;
+}
+
+
+
+          
+
+          
 
             .pp-hero-heading {
               align-items: center !important;
@@ -348,19 +390,9 @@ function Hero() {
               margin-bottom: 28px !important;
             }
 
-            .pp-hero-image-wrapper {
-              width: min(315px, 76vw) !important;
-            }
+            
 
-            .pp-hero-image-wrapper img {
-              width: 77% !important;
-               transform: translateX(5px) translateY(-20px) !important;
-            }
-
-            .pp-hero-frame-back {
-              inset: 18px -18px -18px 18px !important;
-              border-width: 4px !important;
-            }
+           
 
             .pp-hero-frame-main {
               border-width: 4px !important;
@@ -394,19 +426,10 @@ function Hero() {
               text-stroke: 1.8px #f59e0b !important;
             }
 
-            .pp-hero-image-wrapper {
-              width: min(280px, 72vw) !important;
-            }
 
-            .pp-hero-image-wrapper img {
-              width: 78% !important;
-              transform: translateX(4px) translateY(5px) !important;
-            }
+            
 
-            .pp-hero-frame-back {
-              inset: 14px -14px -14px 14px !important;
-              border-width: 3px !important;
-            }
+            
 
             .pp-hero-frame-main {
               border-width: 3px !important;
@@ -441,9 +464,7 @@ function Hero() {
               margin-bottom: 52px !important;
             }
 
-            .pp-hero-image-wrapper {
-              width: min(250px, 70vw) !important;
-            }
+           
 
             .pp-hero-title-top {
               font-size: 34px !important;
