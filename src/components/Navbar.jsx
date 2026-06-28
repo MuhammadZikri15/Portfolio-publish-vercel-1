@@ -6,7 +6,6 @@ function Navbar() {
   const [showCV, setShowCV] = useState(false);
   const cvPdf = `${import.meta.env.BASE_URL}cvmzikri.pdf`;
 
-  const cvImage = `${import.meta.env.BASE_URL}cvmzikri.png`;
 
   const logoSrc = `${import.meta.env.BASE_URL}logoz.png`;
 
@@ -183,10 +182,28 @@ function Navbar() {
 
 
 .pp-navbar-link{
- color:#000 !important;
- text-decoration:none;
- font-size:14px;
- font-weight:650;
+  position:relative;
+  color:#000 !important;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:650;
+  transition:.3s ease;
+}
+
+.pp-navbar-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:3px;
+  background:#f59e0b;
+  border-radius:20px;
+  transition:width .3s ease;
+}
+
+.pp-navbar-link:hover::after{
+  width:100%;
 }
 
 .pp-navbar-mobile-menu .pp-navbar-link{
@@ -425,21 +442,14 @@ font-weight:bold;
 
 .pp-cv-content{
   flex:1;
-  overflow:auto;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
   background:#fff;
-  padding:10px;
+  overflow:hidden;
 }
 
-
-.pp-cv-content img{
+.pp-cv-content iframe{
   width:100%;
-  height:auto;
-  max-width:800px;
-  object-fit:contain;
-  display:block;
+  height:70vh;
+  border:none;
 }
 
 
@@ -619,13 +629,22 @@ border-radius:12px;
               </div>
 
               <div className="pp-cv-content">
-                <img src={cvImage} alt="CV" />
+                <iframe
+                  src={cvPdf}
+                  title="Curriculum Vitae"
+                  width="100%"
+                  height="700"
+                  style={{
+                    border: "none",
+                    borderRadius: "10px",
+                  }}
+                />
               </div>
 
               <div className="pp-cv-footer">
                 <a
                   href={cvPdf}
-                  download="cvmzikri.pdf"
+                  download="Muhammad_Zikri_CV.pdf"
                   className="pp-cv-download"
                 >
                   Download CV

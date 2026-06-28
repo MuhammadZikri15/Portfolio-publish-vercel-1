@@ -7,18 +7,18 @@ function Certificate() {
 
   const certificates = [
     {
-      title: "Digital Marketing",
+      title: "Digital Marketing For Beginner",
       issuer: "Dibimbing",
       image: "/Dibimbing.png",
     },
     {
-      title: "BSI Incubator",
-      issuer: "Dibimbing",
-      image: "/Seminar.png",
+      title: "Database Administrator",
+      issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+      image: "/bnsp.png",
     },
     {
-      title: "IT Bootcamp",
-      issuer: "Bina Sarana Informatika",
+      title: "IT Bootcamp Software Development For Industry",
+      issuer: "Universitas Bina Sarana Informatika",
       image: "/Bsi.png",
     },
   ];
@@ -100,16 +100,20 @@ function Certificate() {
           }
 
           .pp-certificate-card {
-            width: 100%;
-            min-width: 0;
-            background: #f3e4c8;
-            border-radius: 18px;
-            border: 2px solid #000000;
-            overflow: hidden;
-            color: #000000;
-            box-shadow: 7px 7px 0 #000000;
-            transition: all 0.3s ease;
-          }
+  width: 100%;
+  min-width: 0;
+  background: #f3e4c8;
+  border-radius: 18px;
+  border: 2px solid #000000;
+  overflow: hidden;
+  color: #000000;
+  box-shadow: 7px 7px 0 #000000;
+  transition: all 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
           .pp-certificate-card:hover {
             transform: translate(-4px, -4px);
@@ -129,25 +133,31 @@ function Certificate() {
           }
 
           .pp-certificate-image-wrap {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.35);
-            line-height: 0;
-          }
+  width: 100%;
+  height: 320px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.35);
+  line-height: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
           .pp-certificate-image-wrap img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
-            object-position: center;
-            border-radius: 12px;
-          }
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 12px;
+}
 
           .pp-certificate-caption {
-            padding: 14px 16px 16px;
-            border-top: 2px solid #000000;
-          }
+  padding: 14px 16px 16px;
+  border-top: 2px solid #000000;
+  margin-top: auto;
+}
 
           .pp-certificate-caption h3 {
             margin: 0 0 4px;
@@ -387,11 +397,7 @@ function Certificate() {
         </motion.div>
       </AnimatePresence>
 
-      {!showMore && (
-        <div className="pp-certificate-more-wrapper">
-        
-        </div>
-      )}
+      {!showMore && <div className="pp-certificate-more-wrapper"></div>}
     </section>
   );
 }

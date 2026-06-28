@@ -495,7 +495,7 @@ ${message}
           </p>
 
           <div className="pp-contact-list">
-            <a href="mailto:mz150904@gmail.com" className="pp-contact-item">
+            <a href="mailto:muhammadzikri549@gmail.com" className="pp-contact-item">
               <div className="pp-contact-icon pp-gmail-icon">
                 <SiGmail />
               </div>
